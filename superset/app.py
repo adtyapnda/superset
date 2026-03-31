@@ -14,6 +14,7 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
+from superset.utils.request_logger import before_request, after_request
 from __future__ import annotations
 
 import logging
@@ -45,6 +46,8 @@ logger = logging.getLogger(__name__)
 
 
 def create_app(
+    app.before_request(before_request)
+    app.after_request(after_request)
     superset_config_module: Optional[str] = None,
     superset_app_root: Optional[str] = None,
 ) -> Flask:
